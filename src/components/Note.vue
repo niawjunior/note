@@ -6,7 +6,7 @@
         <md-table-head>ชื่อโน๊ต</md-table-head>
         <md-table-head>คำอธิบาย</md-table-head>
         <md-table-head>หมวดหมู่</md-table-head>
-        <md-table-head>รูปแบบ</md-table-head>
+        <md-table-head>ประเภท</md-table-head>
         <md-table-head>ลิ้งค์</md-table-head>
       </md-table-row>
       <md-table-row>
