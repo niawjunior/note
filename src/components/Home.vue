@@ -2,7 +2,7 @@
   <div>
     <Nav/>
     <div class="md-layout md-alignment-top-center">
-      <div class="md-layout-item md-size-50">
+      <div class="md-layout-item md-size-60" style="text-align:center;">
       <Search/>
       <Tags/>
       </div>
