@@ -1,29 +1,36 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import  firebase  from './firebase';
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    loginDialog: false
+    notes: [],
+    user: null
   },
   getters: {
-    getLoginDialog: state => {
-      return state.loginDialog
+    login: state => {
+      return state.user
     }
   },
   mutations: {
-    LOGIN_DIALOG(state, status) {
-     state.loginDialog = status
+    LOGIN(state, user) {
+      state.user = {
+        data: user,
+        status: true
+      }
     }
-   
   },
   actions: {
-    loginDialog({ commit }, status){
-      commit('LOGIN_DIALOG', status)
-    },
-    addTodo({ commit }, todo){
-      commit('ADD_TODO', todo)
+    login({ commit }, user) {
+      return new Promise((resolve, reject) => {
+        return firebase.login(user).then(user => {
+          commit('LOGIN', user)
+          resolve(this.getters.login)
+        }).catch(e => {
+          reject(e.code)
+        })
+      })
     }
   }
 })
