@@ -1,7 +1,5 @@
 <template>
   <div>
-
-    
     <md-toolbar class="md-primary" md-elevation="1">
         <div class="md-toolbar-section-start">
           <md-button to="/">โน๊ต</md-button>

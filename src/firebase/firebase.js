@@ -1,6 +1,6 @@
 import  * as firebase from 'firebase';
 import 'firebase/firestore';
-import { config } from '../config/firebase.config'
+import { config } from '../config/firebase'
 firebase.initializeApp(config).firestore()
 
 export default {

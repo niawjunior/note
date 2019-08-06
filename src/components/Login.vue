@@ -55,7 +55,7 @@ export default {
           duration: 4000,
           speed: 1000
         })
-      this.$router.push({ path: '/add' })
+      this.$router.push({ path: '/' })
      }).catch(e => {
        this.isClick = false
        if (e === 'auth/user-not-found' || e === 'auth/wrong-password') {

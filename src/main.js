@@ -10,7 +10,8 @@ import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 import VeeValidate from 'vee-validate';
 import AsyncComputed from 'vue-async-computed'
-
+import velocity from 'velocity-animate'
+import Notifications from 'vue-notification'
 import firebase from './firebase/firebase'
 Vue.use(AsyncComputed)
 Vue.config.productionTip = false
@@ -18,25 +19,23 @@ Vue.use(VeeValidate)
 Vue.use(VueMaterial)
 Vue.use(VueRouter)
 
-import velocity from 'velocity-animate'
-
-import Notifications from 'vue-notification'
-
 Vue.use(Notifications, { velocity })
 Vue.directive('focus', {
   inserted: function (el) {
     el.focus()
   }
 })
-firebase.isAuth().then(user => {
-  if (user) {
-    store.commit('AUTH', user)
-  } else {
-    store.commit('AUTH', user)
-  }
-})
 new Vue({
   store,
   router,
+  created() {
+    firebase.isAuth().then(user => {
+      if (user) {
+        store.commit('AUTH', user)
+      } else {
+        store.commit('AUTH', user)
+      }
+    })
+  },
   render: h => h(App)
 }).$mount('#app')
