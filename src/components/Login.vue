@@ -45,8 +45,8 @@ export default {
      this.$store.dispatch('login', {
        email: this.email,
        password: this.password
-     }).then(user => {
-       console.log(user)
+     }).then(() => {
+       this.isClick = false
        this.$notify({
           group: 'foo',
           type: 'success',
@@ -55,6 +55,7 @@ export default {
           duration: 4000,
           speed: 1000
         })
+      this.$router.push({ path: '/add' })
      }).catch(e => {
        this.isClick = false
        if (e === 'auth/user-not-found' || e === 'auth/wrong-password') {
@@ -135,6 +136,6 @@ export default {
   margin-top: 10px;
 }
 .notifications {
-  right: -40px;
+  right: -40px !important;
 }
 </style>

@@ -1,14 +1,23 @@
 import Vue from 'vue'
+import VueRouter from 'vue-router'
+import 'bootstrap-css-only/css/bootstrap.min.css'; 
+import 'mdbvue/build/css/mdb.css';
 import App from './App.vue'
 import VueMaterial from 'vue-material'
-import store from './store'
-import router from './router'
+import store from './store/store'
+import router from './routes/router'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 import VeeValidate from 'vee-validate';
+import AsyncComputed from 'vue-async-computed'
+
+import firebase from './firebase/firebase'
+Vue.use(AsyncComputed)
 Vue.config.productionTip = false
-Vue.use(VeeValidate);
+Vue.use(VeeValidate)
 Vue.use(VueMaterial)
+Vue.use(VueRouter)
+
 import velocity from 'velocity-animate'
 
 import Notifications from 'vue-notification'
@@ -17,6 +26,13 @@ Vue.use(Notifications, { velocity })
 Vue.directive('focus', {
   inserted: function (el) {
     el.focus()
+  }
+})
+firebase.isAuth().then(user => {
+  if (user) {
+    store.commit('AUTH', user)
+  } else {
+    store.commit('AUTH', user)
   }
 })
 new Vue({
