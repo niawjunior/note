@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     notes: [],
     user: false,
-    load: false
+    load: false,
+    addState: false
   },
   getters: {
     login: state => {
@@ -24,6 +25,12 @@ export default new Vuex.Store({
     },
     LOGOUT(state, user) {
       state.user = user
+    },
+    ADD_NOTE(state, status) {
+      state.addState = status
+    },
+    GET_NOTE(state, note) {
+      state.notes = note
     }
   },
   actions: {
@@ -56,7 +63,23 @@ export default new Vuex.Store({
           reject(e)
         })
       })
-    }
+    },
+    addNote({ commit }, note) {
+      return new Promise(( resolve, reject) => {
+        return firebase.addNote(note).then(() => {
+          commit('ADD_NOTE', true)
+          resolve(this.state.addState)
+        }).catch(e => {
+          reject(e)
+        })
+      })
+    },
+    async getNote({ commit } ) {
+      let query = await firebase.getNote()
+      const note = query.docs.map(doc => {
+        return doc.data()
+      })
+      commit('GET_NOTE', note)}
   }
 })
 

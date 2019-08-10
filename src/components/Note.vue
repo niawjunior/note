@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{ getNote }}
      <md-table>
       <md-table-row>
         <md-table-head>วันที่/เวลา</md-table-head>
@@ -32,6 +33,14 @@
 <script>
 
 export default {
+  computed: {
+    getNote() {
+      return this.$store.state.notes
+    }
+  },
+  created() {
+    this.$store.dispatch('getNote')
+  }
 }
 </script>
 

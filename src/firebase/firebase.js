@@ -1,7 +1,7 @@
 import  * as firebase from 'firebase';
 import 'firebase/firestore';
 import { config } from '../config/firebase'
-firebase.initializeApp(config).firestore()
+const database = firebase.initializeApp(config).firestore()
 
 export default {
   login(user){
@@ -36,5 +36,18 @@ export default {
         reject(e)
       })
     })
+  },
+  addNote(note){
+    return new Promise((resolve, reject) => {
+      return database.collection('Notes').add(note).then((result) => {
+        resolve(result)
+      }).catch(e => {
+        reject(e)
+      })
+    })
+  },
+  async getNote () {
+    let query = database.collection('Notes')
+    return await query.get()
   }
 }
