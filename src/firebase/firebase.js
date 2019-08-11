@@ -37,7 +37,7 @@ export default {
       })
     })
   },
-  addNote(note){
+  async addNote(note){
     return new Promise((resolve, reject) => {
       return database.collection('Notes').add(note).then((result) => {
         resolve(result)

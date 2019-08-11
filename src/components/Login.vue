@@ -125,9 +125,6 @@ export default {
   font-size: 16px;
 }
 
-.md-progress-spinner.md-theme-default .md-progress-spinner-circle {
-    stroke: #ffffff !important;
-}
 .vue-notification-template {
   height: 70px;
   width: 250px;

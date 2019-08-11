@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import Fuse from 'fuse.js';
 import  firebase  from '../firebase/firebase';
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    notes: [],
+    notes: null,
+    notesInit: null,
     user: false,
     load: false,
     addState: false
@@ -31,6 +33,10 @@ export default new Vuex.Store({
     },
     GET_NOTE(state, note) {
       state.notes = note
+      state.notesInit = note
+    },
+    SEARCH(state, data) {
+      state.notes = data.keyword ? data.result : state.notesInit
     }
   },
   actions: {
@@ -79,7 +85,31 @@ export default new Vuex.Store({
       const note = query.docs.map(doc => {
         return doc.data()
       })
-      commit('GET_NOTE', note)}
+      commit('GET_NOTE', note)
+    },
+    search({ commit }, keyword) {
+      const options = {
+        shouldSort: true,
+        tokenize: true,
+        threshold: 0.6,
+        location: 0,
+        distance: 100,
+        maxPatternLength: 32,
+        minMatchCharLength: 1,
+        keys: [
+          "category",
+          "description",
+          "name",
+          "tag"
+        ]
+      };
+      const fuse = new Fuse(this.state.notesInit, options)
+      const result = fuse.search(keyword);
+      commit('SEARCH', {
+        result,
+        keyword
+      } )
+    }
   }
 })
 

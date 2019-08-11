@@ -16,6 +16,7 @@
           </md-field>
           <label>หมวดหมู่</label>
           <div>
+              <md-checkbox v-model="note.tag" value="Web">Web</md-checkbox>
               <md-checkbox v-model="note.tag" value="JavaScript">JavaScript</md-checkbox>
               <md-checkbox v-model="note.tag" value="Angular">Angular</md-checkbox>
               <md-checkbox v-model="note.tag" value="Vue.js">Vue.js</md-checkbox>
@@ -80,7 +81,8 @@ export default {
         description: this.note.description || '',
         tag: this.note.tag,
         category: this.note.category,
-        url: this.note.url
+        url: this.note.url,
+        createdAt: Date.now()
       }).then(() => {
          this.$notify({
           group: 'foo',
