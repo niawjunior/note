@@ -1,13 +1,9 @@
 <template>
   <div>
-    <div style="padding:.2rem;display: inline-block;">
-    <md-chip class="md-accent" md-clickable>JavaScript (100)</md-chip>
-    </div>
-    <div style="padding:.2rem;display: inline-block;">
-    <md-chip class="md-accent" md-clickable>Angular (35)</md-chip>
-    </div>
-    <div style="padding:.2rem;display: inline-block;">
-    <md-chip class="md-accent" md-clickable>ทั่วไป (30)</md-chip>
+    <div v-if="tags && tags.length !== 0">
+      <div v-for="(tag, index) in tags" :key="index" class="tag">
+      <md-chip class="md-accent" md-clickable>{{ tag.tag }} ({{ tag.count}})</md-chip>
+      </div>
     </div>
   </div>
 </template>
@@ -15,9 +11,17 @@
 <script>
 
 export default {
+  computed: {
+    tags() {
+      return this.$store.getters.tag
+    }
+  }
 }
 </script>
 
 <style scoped>
-
+  .tag {
+    padding:.2rem;
+    display: inline-block;
+  }
 </style>

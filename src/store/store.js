@@ -10,11 +10,15 @@ export default new Vuex.Store({
     notesInit: null,
     user: false,
     load: false,
-    addState: false
+    addState: false,
+    tag: null
   },
   getters: {
     login: state => {
       return state.user
+    },
+    tag: state => {
+      return state.tag
     }
   },
   mutations: {
@@ -32,8 +36,27 @@ export default new Vuex.Store({
       state.addState = status
     },
     GET_NOTE(state, note) {
+      let tagArr = []
       state.notes = note
       state.notesInit = note
+      state.notesInit.forEach(item => {
+        tagArr.push(...item.tag)
+      })
+      const uniqueTag = [...new Set(tagArr)]
+      let result = []
+      uniqueTag.forEach(tag => {
+        let item = []
+        tagArr.forEach(str => {
+          if (tag === str) {
+            item.push(str)
+          }
+        })
+        result.push({
+          tag,
+          count: item.length
+        })
+      })
+      state.tag = result
     },
     SEARCH(state, data) {
       state.notes = data.keyword ? data.result : state.notesInit
