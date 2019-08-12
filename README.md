@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/niawjunior/note.svg?branch=master)](https://travis-ci.org/niawjunior/note)
+
 # note
 
 ## Project setup
