@@ -1,4 +1,4 @@
 module.exports = {
-  publicPath: '/note/',
-  outputDir: 'dist'
+  publicPath: '',
+  outputDir: 'docs'
 }
