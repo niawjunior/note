@@ -1,4 +1,4 @@
 module.exports = {
-  publicPath: '',
+  publicPath: 'https://niawjunior.github.io/note/',
   outputDir: 'dist'
 }
