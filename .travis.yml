@@ -20,7 +20,7 @@ install:
 
 script:
   - npm run build
-  - mv dist/browser/index.html dist/browser/404.html
+  - mv dist/index.html dist/404.html
 
 deploy:
   provider: pages
