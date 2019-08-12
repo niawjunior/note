@@ -13,15 +13,17 @@ import AsyncComputed from 'vue-async-computed'
 import velocity from 'velocity-animate'
 import Notifications from 'vue-notification'
 import firebase from './firebase/firebase'
-import moment from 'moment'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
+
+import { dateFilter } from "vue-date-fns";
+Vue.filter("date", dateFilter);
+
 Vue.use(AsyncComputed)
 Vue.config.productionTip = false
 Vue.use(VeeValidate)
 Vue.use(VueMaterial)
 Vue.use(VueRouter)
-Vue.use(moment);
 Vue.use(Notifications, { velocity })
 Vue.directive('focus', {
   inserted: function (el) {

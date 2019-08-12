@@ -1,4 +1,5 @@
-import  * as firebase from 'firebase';
+import  * as firebase from 'firebase/app';
+import 'firebase/auth'; // This line is important
 import 'firebase/firestore';
 import { config } from '../config/firebase'
 const database = firebase.initializeApp(config).firestore()
@@ -6,7 +7,7 @@ const database = firebase.initializeApp(config).firestore()
 export default {
   login(user){
      return new Promise((resolve, reject) => {
-       firebase.auth().signInWithEmailAndPassword(user.email, user.password).then(user => {
+      firebase.auth().signInWithEmailAndPassword(user.email, user.password).then(user => {
          if (user) {
            resolve(user)
          }

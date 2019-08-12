@@ -10,7 +10,7 @@
         <md-table-head>ลิ้งค์</md-table-head>
       </md-table-row>
       <md-table-row v-for="(item, index) in note" :key="index">
-        <md-table-cell>{{ moment(item.createdAt)}}</md-table-cell>
+        <md-table-cell>{{ item.createdAt | date('DD/MM/YYYY HH:mm') }}</md-table-cell>
         <md-table-cell>{{ subName(item.name) }}</md-table-cell>
         <md-table-cell>{{ item.description || '-'}}</md-table-cell>
         <md-table-cell>{{ item.tag.toString() }}</md-table-cell>
@@ -25,7 +25,6 @@
 </template>
 
 <script>
-import moment from 'moment'
 export default {
   computed: {
     note() {
@@ -36,9 +35,6 @@ export default {
     this.$store.dispatch('getNote')
   },
   methods: {
-    moment(date) {
-      return moment(Number(date)).format('DD/MM/YYYY HH:mm')
-    },
     subName(name) {
       return name.length >50 ? name.substr(0,50) + '..' : name
     }
