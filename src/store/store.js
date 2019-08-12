@@ -4,6 +4,21 @@ import Fuse from 'fuse.js';
 import  firebase  from '../firebase/firebase';
 Vue.use(Vuex)
 
+const options = {
+  shouldSort: true,
+  threshold: 0.5,
+  location: 0,
+  distance: 100,
+  maxPatternLength: 15,
+  minMatchCharLength: 1,
+  keys: [
+    "category",
+    "description",
+    "name",
+    "tag"
+  ]
+};
+
 export default new Vuex.Store({
   state: {
     notes: null,
@@ -117,24 +132,10 @@ export default new Vuex.Store({
        })
     },
     search({ commit, state }, keyword) {
-      if (!keyword && this.state.currentTag.length === 0) {
+      if (!keyword && (this.state.currentTag && this.state.currentTag.length === 0)) {
         commit('SEARCH', this.state.notesInit)
       } else {
         state.keyword = keyword
-        const options = {
-          shouldSort: true,
-          threshold: 0.5,
-          location: 0,
-          distance: 100,
-          maxPatternLength: 15,
-          minMatchCharLength: 1,
-          keys: [
-            "category",
-            "description",
-            "name",
-            "tag"
-          ]
-        };
         const note = (this.state.currentTag && this.state.currentTag.length != 0) ? this.state.currentData : this.state.notesInit
         const fuse = new Fuse(note, options)
         const result = fuse.search(keyword);
@@ -145,20 +146,6 @@ export default new Vuex.Store({
     searchByTag({ commit }, tag) {
       let result = []
       if (tag.length === 0 && this.state.keyword) {
-        const options = {
-          shouldSort: true,
-          threshold: 0.5,
-          location: 0,
-          distance: 100,
-          maxPatternLength: 15,
-          minMatchCharLength: 1,
-          keys: [
-            "category",
-            "description",
-            "name",
-            "tag"
-          ]
-        };
         const fuse = new Fuse(this.state.notesInit, options)
         const result = fuse.search(this.state.keyword);
         this.state.notes = result
