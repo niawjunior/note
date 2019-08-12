@@ -5,8 +5,8 @@
           <md-button to="/">โน๊ต</md-button>
         </div>
       <div v-if="navLoad" class="md-toolbar-section-end">
-        <md-button v-if="!isAuth" to="/login">เข้าสู่ระบบ</md-button>
-        <md-button v-if="isAuth" to="/add">เพิ่มโน๊ต</md-button>
+        <md-button v-if="!isAuth" to="login">เข้าสู่ระบบ</md-button>
+        <md-button v-if="isAuth" to="add">เพิ่มโน๊ต</md-button>
         <md-button v-if="isAuth" to=""  @click="logout">ออกจากระบบ</md-button>
       </div>
     </md-toolbar>
