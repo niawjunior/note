@@ -8,9 +8,9 @@ Vue.use(VueRouter)
 
 const routes = [
   { path: "*", component: Home },
-  { path: '', component: Home},
-  { path: '/add', component: Add, beforeEnter: guard.auth},
-  { path: '/login', component: Login, beforeEnter: guard.secure }
+  { path: '', name: '/', component: Home},
+  { path: '/add', name: 'add', component: Add, beforeEnter: guard.auth},
+  { path: '/login', name: 'login', component: Login, beforeEnter: guard.secure }
 ]
 
 export default new VueRouter({

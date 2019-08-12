@@ -11,7 +11,10 @@ export default new Vuex.Store({
     user: false,
     load: false,
     addState: false,
-    tag: null
+    tag: null,
+    currentTag: null,
+    currentData: null,
+    keyword: null
   },
   getters: {
     login: state => {
@@ -58,11 +61,12 @@ export default new Vuex.Store({
       })
       state.tag = result
     },
-    SEARCH(state, data) {
-      state.notes = data.keyword ? data.result : state.notesInit
+    SEARCH(state, result) {
+      state.notes  = result
     },
     SEARCH_BY_TAG(state, data) {
-      console.log(data.tag)
+      state.currentTag = data.tag
+      state.currentData = data.result
       state.notes = data.tag.length == 0 ? state.notesInit : data.result
     }
   },
@@ -112,40 +116,64 @@ export default new Vuex.Store({
          commit('GET_NOTE', result)
        })
     },
-    search({ commit }, keyword) {
-      const options = {
-        shouldSort: true,
-        threshold: 0.5,
-        location: 0,
-        distance: 100,
-        maxPatternLength: 15,
-        minMatchCharLength: 1,
-        keys: [
-          "category",
-          "description",
-          "name",
-          "tag"
-        ]
-      };
-      const fuse = new Fuse(this.state.notesInit, options)
-      const result = fuse.search(keyword);
-      commit('SEARCH', {
-        result,
-        keyword
-      } )
+    search({ commit, state }, keyword) {
+      if (!keyword && this.state.currentTag.length === 0) {
+        commit('SEARCH', this.state.notesInit)
+      } else {
+        state.keyword = keyword
+        const options = {
+          shouldSort: true,
+          threshold: 0.5,
+          location: 0,
+          distance: 100,
+          maxPatternLength: 15,
+          minMatchCharLength: 1,
+          keys: [
+            "category",
+            "description",
+            "name",
+            "tag"
+          ]
+        };
+        const note = (this.state.currentTag && this.state.currentTag.length != 0) ? this.state.currentData : this.state.notesInit
+        const fuse = new Fuse(note, options)
+        const result = fuse.search(keyword);
+        const resultSearch = keyword ? result : this.state.currentData || this.state.notesInit
+        commit('SEARCH', resultSearch)
+      }
     },
     searchByTag({ commit }, tag) {
       let result = []
-      tag.filter(tag => {
-        const r = this.state.notesInit.filter(note => {
-          return note.tag.includes(tag)
+      if (tag.length === 0 && this.state.keyword) {
+        const options = {
+          shouldSort: true,
+          threshold: 0.5,
+          location: 0,
+          distance: 100,
+          maxPatternLength: 15,
+          minMatchCharLength: 1,
+          keys: [
+            "category",
+            "description",
+            "name",
+            "tag"
+          ]
+        };
+        const fuse = new Fuse(this.state.notesInit, options)
+        const result = fuse.search(this.state.keyword);
+        this.state.notes = result
+      } else {
+        tag.filter(tag => {
+          const r = this.state.notesInit.filter(note => {
+            return note.tag.includes(tag)
+          })
+          result.push(...r)
         })
-        result.push(...r)
-      })
-      commit('SEARCH_BY_TAG', {
-        result,
-        tag
-      } )
+        commit('SEARCH_BY_TAG', {
+          result,
+          tag
+        })
+      }
     }
   }
 })
