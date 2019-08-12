@@ -2,7 +2,7 @@
   <div>
     <div v-if="tags && tags.length !== 0">
       <div v-for="(tag, index) in tags" :key="index" class="tag">
-      <md-chip class="md-accent" md-clickable>{{ tag.tag }} ({{ tag.count}})</md-chip>
+        <md-checkbox v-model="checkTag" :value="tag.tag">{{ tag.tag }} ({{ tag.count}})</md-checkbox>
       </div>
     </div>
   </div>
@@ -11,9 +11,21 @@
 <script>
 
 export default {
+  data() {
+    return {
+      checkTag: []
+    }
+  },
   computed: {
     tags() {
       return this.$store.getters.tag
+    }
+  },
+  methods: {
+  },
+  watch: {
+    checkTag() {
+      this.$store.dispatch('searchByTag', this.checkTag)
     }
   }
 }

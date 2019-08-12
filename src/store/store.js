@@ -60,6 +60,10 @@ export default new Vuex.Store({
     },
     SEARCH(state, data) {
       state.notes = data.keyword ? data.result : state.notesInit
+    },
+    SEARCH_BY_TAG(state, data) {
+      console.log(data.tag)
+      state.notes = data.tag.length == 0 ? state.notesInit : data.result
     }
   },
   actions: {
@@ -117,7 +121,7 @@ export default new Vuex.Store({
         threshold: 0.6,
         location: 0,
         distance: 100,
-        maxPatternLength: 32,
+        maxPatternLength: 15,
         minMatchCharLength: 1,
         keys: [
           "category",
@@ -131,6 +135,19 @@ export default new Vuex.Store({
       commit('SEARCH', {
         result,
         keyword
+      } )
+    },
+    searchByTag({ commit }, tag) {
+      let result = []
+      tag.filter(tag => {
+        const r = this.state.notesInit.filter(note => {
+          return note.tag.includes(tag)
+        })
+        result.push(...r)
+      })
+      commit('SEARCH_BY_TAG', {
+        result,
+        tag
       } )
     }
   }
