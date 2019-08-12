@@ -107,12 +107,10 @@ export default new Vuex.Store({
         })
       })
     },
-    async getNote({ commit } ) {
-      let query = await firebase.getNote()
-      const note = query.docs.map(doc => {
-        return doc.data()
-      })
-      commit('GET_NOTE', note)
+    getNote({ commit } ) {
+       firebase.getNote().then(result => {
+         commit('GET_NOTE', result)
+       })
     },
     search({ commit }, keyword) {
       const options = {

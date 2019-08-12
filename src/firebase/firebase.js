@@ -46,8 +46,17 @@ export default {
       })
     })
   },
-  async getNote () {
-    let query = database.collection('Notes')
-    return await query.get()
+  getNote () {
+    return new Promise((resolve, reject) => {
+      database.collection('Notes').orderBy("createdAt", "desc").onSnapshot(result => {
+        let note = []
+        result.docs.forEach(doc => {
+          note.push(doc.data())
+        })
+        resolve(note)
+      }, error => {
+        reject(error)
+      })
+    })
   }
 }

@@ -11,7 +11,7 @@
       </md-table-row>
       <md-table-row v-for="(item, index) in note" :key="index">
         <md-table-cell>{{ moment(item.createdAt)}}</md-table-cell>
-        <md-table-cell>{{ item.name.substr(0,50) }}</md-table-cell>
+        <md-table-cell>{{ subName(item.name) }}</md-table-cell>
         <md-table-cell>{{ item.description || '-'}}</md-table-cell>
         <md-table-cell>{{ item.tag.toString() }}</md-table-cell>
         <md-table-cell>{{ item.category.toString() }}</md-table-cell>
@@ -38,6 +38,9 @@ export default {
   methods: {
     moment(date) {
       return moment(Number(date)).format('DD/MM/YYYY HH:mm')
+    },
+    subName(name) {
+      return name.length >50 ? name.substr(0,50) + '..' : name
     }
   }
 }

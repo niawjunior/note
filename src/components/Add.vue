@@ -97,6 +97,8 @@ export default {
         this.note.tag = []
         this.note.category = []
         this.note.url = ''
+        this.tagClick = null,
+        this.categoryClick = null
       })
     }
   }
