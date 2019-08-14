@@ -30,6 +30,7 @@
           <div>
               <md-checkbox v-model="note.category" value="Course">Course (Video)</md-checkbox>
               <md-checkbox v-model="note.category" value="Article">Article</md-checkbox>
+              <md-checkbox v-model="note.category" value="Learning">Learning</md-checkbox>
               <md-checkbox v-model="note.category" value="Thai">Thai</md-checkbox>
               <md-checkbox v-model="note.category" value="Free">Free</md-checkbox>
               <p v-if="note.category.length === 0 && categoryClick">The category field is required.</p>
