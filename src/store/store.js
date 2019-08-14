@@ -80,7 +80,7 @@ export default new Vuex.Store({
       state.notes  = result
     },
     SEARCH_BY_TAG(state, data) {
-      state.currentTag = data.tag
+      data.result = Array.from(new Set(data.result.map(JSON.stringify))).map(JSON.parse)
       state.currentData = data.result
       state.notes = data.tag.length == 0 ? state.notesInit : data.result
     }

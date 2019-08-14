@@ -6,7 +6,7 @@
       <Tags/>
       </div>
     </div>
-    <div class="md-layout md-alignment-top-center">
+    <div class="md-layout md-alignment-top-center" style="margin-bottom:2rem;">
     <div class="md-layout-item md-size-90" style="margin-top:1rem;">
       <Note/>
     </div>
