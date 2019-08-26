@@ -132,10 +132,10 @@ export default new Vuex.Store({
        })
     },
     search({ commit, state }, keyword) {
+      state.keyword = keyword
       if (!keyword && (this.state.currentTag && this.state.currentTag.length === 0)) {
         commit('SEARCH', this.state.notesInit)
       } else {
-        state.keyword = keyword
         const note = (this.state.currentTag && this.state.currentTag.length != 0) ? this.state.currentData : this.state.notesInit
         const fuse = new Fuse(note, options)
         const result = fuse.search(keyword);
@@ -146,23 +146,26 @@ export default new Vuex.Store({
     searchByTag({ commit }, tag) {
       this.state.currentTag = tag
       let result = []
-      if (tag.length === 0 && this.state.keyword) {
+      if (this.state.currentTag.length === 0 && this.state.keyword) {
         const fuse = new Fuse(this.state.notesInit, options)
         const result = fuse.search(this.state.keyword);
         this.state.notes = result
       } else {
-        tag.filter(tag => {
-          const r = this.state.notesInit.filter(note => {
-            return note.tag.includes(tag)
+        if (this.state.currentTag.length === 0 && !this.state.keyword) {
+          this.state.notes = this.state.notesInit
+        } else {
+          this.state.currentTag.filter(tag => {
+            const r = this.state.notesInit.filter(note => {
+              return note.tag.includes(tag)
+            })
+            result.push(...r)
           })
-          result.push(...r)
-        })
-        commit('SEARCH_BY_TAG', {
-          result,
-          tag
-        })
+          commit('SEARCH_BY_TAG', {
+            result,
+            tag: this.state.currentTag
+          })
+        }
       }
     }
   }
 })
-
