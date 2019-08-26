@@ -49,7 +49,7 @@ export default {
   },
   getNote () {
     return new Promise((resolve, reject) => {
-      database.collection('Notes').orderBy("createdAt", "desc").onSnapshot(result => {
+      database.collection('Notes').onSnapshot(result => {
         let note = []
         result.docs.forEach(doc => {
           note.push(doc.data())

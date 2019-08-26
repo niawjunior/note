@@ -20,6 +20,7 @@
               <md-checkbox v-model="note.tag" value="JavaScript">JavaScript</md-checkbox>
               <md-checkbox v-model="note.tag" value="Angular">Angular</md-checkbox>
               <md-checkbox v-model="note.tag" value="Vue.js">Vue.js</md-checkbox>
+              <md-checkbox v-model="note.tag" value="Python">Python</md-checkbox>
               <md-checkbox v-model="note.tag" value="Framework">Framework</md-checkbox>
               <md-checkbox v-model="note.tag" value="Library">Library</md-checkbox>
               <md-checkbox v-model="note.tag" value="Tip">Tip</md-checkbox>

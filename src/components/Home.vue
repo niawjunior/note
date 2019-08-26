@@ -1,15 +1,15 @@
 <template>
   <div>
     <div class="md-layout md-alignment-top-center">
-      <div class="md-layout-item md-size-60" style="text-align:center;">
-      <Search/>
-      <Tags/>
+      <div class="md-layout-item md-size-50">
+        <Search/>
+        <Tags/>
       </div>
     </div>
     <div class="md-layout md-alignment-top-center" style="margin-bottom:2rem;">
-    <div class="md-layout-item md-size-90" style="margin-top:1rem;">
-      <Note/>
-    </div>
+      <div class="md-layout-item md-size-90" style="margin-top:1rem;margin-bottom:1rem;">
+        <Note/>
+      </div>
     </div>
   </div>
 </template>

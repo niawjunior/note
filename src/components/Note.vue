@@ -11,13 +11,16 @@
       </md-table-row>
       <md-table-row v-for="(item, index) in note" :key="index">
         <md-table-cell>{{ item.createdAt | date('DD/MM/YYYY HH:mm') }}</md-table-cell>
-        <md-table-cell>{{ subName(item.name) }}</md-table-cell>
+        <md-table-cell :title="item.name">{{ subName(item.name) }}</md-table-cell>
         <md-table-cell>{{ item.description || '-'}}</md-table-cell>
         <md-table-cell>{{ item.tag.toString() }}</md-table-cell>
         <md-table-cell>{{ item.category.toString() }}</md-table-cell>
         <md-table-cell><a target="_blank" :href="item.url">{{ item.url.substr(0, 15) }}..</a></md-table-cell>
       </md-table-row>
     </md-table>
+      <!-- <div v-if="note && note.length !== 0" class="md-layout md-alignment-top-center">
+          <md-button class="md-raised md-primary">ดูทั้งหมด</md-button>
+      </div> -->
       <div v-if="!note" style="text-align:center;">
         <md-progress-spinner :md-diameter="100" :md-stroke="10" md-mode="indeterminate"></md-progress-spinner>
       </div>
