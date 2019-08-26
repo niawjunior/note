@@ -144,6 +144,7 @@ export default new Vuex.Store({
       }
     },
     searchByTag({ commit }, tag) {
+      this.state.currentTag = tag
       let result = []
       if (tag.length === 0 && this.state.keyword) {
         const fuse = new Fuse(this.state.notesInit, options)
