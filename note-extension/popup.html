@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
+ 
+  <title>Note</title>
+</head>
+<style>
+  * {
+    font-family: 'Kanit', sans-serif;
+  }
+</style>
+<body>
+  <div class="container mt-2 mb-4" style="width:500px;height:550px;">
+    <h1 class="text-center">Note</h1>
+
+    <form id="submit_note">
+        <div class="form-group">
+          <label for="note_name">ชื่อโน๊ต</label>
+          <input type="text" class="form-control" id="note_name" placeholder="" required>
+        </div>
+        <div class="form-group">
+          <label for="note_description">คำอธิบาย</label>
+          <input type="text" class="form-control" id="note_description" placeholder="">
+        </div>
+        <div class="form-group">
+          <label>หมวดหมู่</label>
+          <br/>
+          <div class="form-check form-check-inline">
+            <input name="tag" class="form-check-input" type="checkbox" id="checkbox1" value="Web">
+            <label for="checkbox1" class="form-check-label">Web</label>
+          </div>
+          <div class="form-check form-check-inline">
+              <input name="tag" class="form-check-input" type="checkbox" id="checkbox2" value="JavaScript">
+              <label for="checkbox2" class="form-check-label">JavaScript</label>
+          </div>
+          <div class="form-check form-check-inline">
+              <input name="tag" class="form-check-input" type="checkbox" id="checkbox3" value="Angular">
+              <label for="checkbox3" class="form-check-label">Angular</label>
+          </div>
+          <div class="form-check form-check-inline">
+              <input name="tag" class="form-check-input" type="checkbox" id="checkbox4" value="Vue.js">
+              <label for="checkbox4" class="form-check-label">Vue.js</label>
+          </div>
+          <div class="form-check form-check-inline">
+              <input name="tag" class="form-check-input" type="checkbox" id="checkbox5" value="Python">
+              <label for="checkbox5" class="form-check-label">Python</label>
+          </div>
+          <div class="form-check form-check-inline">
+              <input name="tag" class="form-check-input" type="checkbox" id="checkbox6" value="Framework">
+              <label for="checkbox6" class="form-check-label">Framework</label>
+          </div>
+          <div class="form-check form-check-inline">
+              <input name="tag" class="form-check-input" type="checkbox" id="checkbox7" value="Library">
+              <label for="checkbox7" class="form-check-label">Library</label>
+          </div>
+          <div class="form-check form-check-inline">
+              <input name="tag" class="form-check-input" type="checkbox" id="checkbox8" value="Tip">
+              <label for="checkbox8" class="form-check-label">Tip</label>
+          </div>
+          <div class="form-check form-check-inline">
+              <input name="tag" class="form-check-input" type="checkbox" id="checkbox9" value="Technology">
+              <label for="checkbox9" class="form-check-label">Technology</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+            <label>ประเภท</label>
+            <br/>
+            <div class="form-check form-check-inline">
+              <input name="category" class="form-check-input" type="checkbox" id="checkbox10" value="Course">
+              <label for="checkbox10" class="form-check-label">Course (Video)</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input name="category" class="form-check-input" type="checkbox" id="checkbox11" value="Article">
+              <label for="checkbox11" class="form-check-label">Article</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input name="category" class="form-check-input" type="checkbox" id="checkbox12" value="Learning">
+              <label for="checkbox12" class="form-check-label">Learning</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input name="category" class="form-check-input" type="checkbox" id="checkbox13" value="Thai">
+              <label for="checkbox13" class="form-check-label">Thai</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input name="category" class="form-check-input" type="checkbox" id="checkbox14" value="Free">
+              <label for="checkbox14" class="form-check-label">Free</label>
+            </div>
+          </div>
+          <div class="form-group">
+              <label for="note_url">ลิงก์</label>
+              <input type="text" class="form-control" id="note_url" placeholder="" required>
+            </div>
+
+        <a target="_blank" href="https://niawjunior.github.io/note">https://niawjunior.github.io/note</a>
+        <button type="submit" class="btn btn-primary float-right">เพิ่มโน๊ต</button>
+        <button id="reset" class="btn btn-secondary float-right mr-2">ล้าง</button>
+      </form>
+  </div>
+</body>
+<script src="https://www.gstatic.com/firebasejs/6.4.1/firebase.js"></script>
+<!-- <script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-messaging.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-functions.js"></script> -->
+
+<script src="./jquery-3.4.1.min.js"></script>
+<script src="./popup.js"></script>
+</html>
