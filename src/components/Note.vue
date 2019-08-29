@@ -15,7 +15,7 @@
         <md-table-cell>{{ item.description || '-'}}</md-table-cell>
         <md-table-cell>{{ item.tag.toString() }}</md-table-cell>
         <md-table-cell>{{ item.category.toString() }}</md-table-cell>
-        <md-table-cell><a target="_blank" :href="item.url">{{ item.url.substr(0, 15) }}..</a></md-table-cell>
+        <md-table-cell><a target="_blank" :href="item.url"><md-icon>link</md-icon></a></md-table-cell>
       </md-table-row>
     </md-table>
       <!-- <div v-if="note && note.length !== 0" class="md-layout md-alignment-top-center">
