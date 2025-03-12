@@ -1,31 +1,31 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Note",
   "version": "1.0.1",
   "description": "Hello Note",
-  "content_security_policy": "script-src 'self' https://www.gstatic.com/firebasejs/6.4.1/firebase.js; object-src 'self'",
   "permissions": [
-    "<all_urls>",
     "tabs",
     "notifications",
     "activeTab",
     "identity",
     "contextMenus"
   ],
+  "host_permissions": ["<all_urls>"],
   "background": {
-    "page": "background.html",
-    "persistent": false
+    "service_worker": "background.js"
   },
-  "content_scripts": [{
-    "matches": ["https://*/*","http://*/*"],
-    "js": ["popup.js", "note.js", "context.js"]
-  }],
+  "content_scripts": [
+    {
+      "matches": ["https://*/*", "http://*/*"],
+      "js": ["popup.js", "note.js", "context.js"]
+    }
+  ],
   "icons": {
     "128": "icon128.png",
     "48": "icon48.png",
     "16": "icon16.png"
   },
-  "browser_action": {
+  "action": {
     "default_icon": "icon16.png",
     "default_popup": "popup.html"
   }
